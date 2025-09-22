@@ -15,6 +15,10 @@ import http from "node:http"; //"node:" informa que o pacote é nativo do node
 // Stateless = dados armazenador em terceiro (banco de dados)
 
 // Cabeçalhos (req,res) => Metadados (não necessariamente informações)
+
+// HTTP Status Code
+// Códigos númericos (semantica) para dizer ao front-end a situação da requisição(se deu erro, se está ok, se foi falta de info, etc)
+
 const users = [];
 
 const server = http.createServer((req, res) => {
