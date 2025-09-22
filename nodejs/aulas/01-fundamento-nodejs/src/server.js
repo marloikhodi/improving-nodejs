@@ -19,10 +19,10 @@ const users = [];
 
 const server = http.createServer((req, res) => {
   // request e response
-  const { method, url } = req;
+  const { method, url } = req; // métodos sendo GET, POST, etc... & url sendo o caminho da requisiçao (/users por exemplo)
 
   if (method === "GET" && url === "/users") {
-    return res.setHeader("Content-type", "application/json").end(JSON.stringify(users));
+    return res.setHeader("Content-type", "application/json").end(JSON.stringify(users)); //o return deve ser em JSON principalmente
   }
   if (method === "POST" && url === "/users") {
     users.push({
