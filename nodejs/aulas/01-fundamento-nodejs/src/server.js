@@ -26,7 +26,9 @@ const server = http.createServer((req, res) => {
   const { method, url } = req; // métodos sendo GET, POST, etc... & url sendo o caminho da requisiçao (/users por exemplo)
 
   if (method === "GET" && url === "/users") {
-    return res.setHeader("Content-type", "application/json").end(JSON.stringify(users)); //o return deve ser em JSON principalmente
+    return res
+      .setHeader("Content-type", "application/json")
+      .end(JSON.stringify(users)); //o return deve ser em JSON principalmente
   }
   if (method === "POST" && url === "/users") {
     users.push({
@@ -35,11 +37,15 @@ const server = http.createServer((req, res) => {
       email: "johndoe@example.com",
     });
 
-    return res.end("Criação de usuário");
+    return res
+      .writeHead(201)
+      .end();
   }
 
   // console.log(method, url);
-  return res.end("Hello World");
+  return res
+    .writeHead(404)
+    .end("Not Found");
 });
 
 server.listen(3333);
