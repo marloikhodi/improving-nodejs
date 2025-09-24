@@ -6,7 +6,7 @@ class OneToHundredStream extends Readable {
         const i = this.index++
         setTimeout(() => {
 
-            if (i > 100) {
+            if (i > 5) {
                 this.push(null)
                 //.push é o metodo de uma readable stream fornecer dados para quem está a consumindo 
                 // null é o fim da stream
@@ -15,7 +15,7 @@ class OneToHundredStream extends Readable {
                 this.push(buff)
                 //tudo enviado da stream de leitura é um CHUNK
             }
-        }, 200);
+        }, 500);
     }
 }
 
@@ -23,4 +23,8 @@ fetch('http://localhost:3334', {
     method: 'POST',
     body: new OneToHundredStream(),
     duplex: 'half'
+}).then(response => {
+    return response.text()
+}).then(data => {
+    console.log(data)
 })
