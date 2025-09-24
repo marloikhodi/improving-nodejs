@@ -1,6 +1,6 @@
 import { Readable } from "node:stream"
 
-class oneToHundredStream extends Readable {
+class OneToHundredStream extends Readable {
     index = 1
     _read() {
         const i = this.index++
@@ -15,6 +15,12 @@ class oneToHundredStream extends Readable {
                 this.push(buff)
                 //tudo enviado da stream de leitura é um CHUNK
             }
-        }, 500);
+        }, 200);
     }
 }
+
+fetch('http://localhost:3334', {
+    method: 'POST',
+    body: new OneToHundredStream(),
+    duplex: 'half'
+})

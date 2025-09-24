@@ -6,7 +6,7 @@ import { Readable, Writable, Transform } from 'node:stream'
 // process.stdin
 //     .pipe(process.stdout)
 
-class oneToHundredStream extends Readable {
+class OneToHundredStream extends Readable {
     index = 1
     _read() {
         const i = this.index++
@@ -41,6 +41,6 @@ class MultiplyByTenStream extends Writable {
     }
 }
 
-new oneToHundredStream()
+new OneToHundredStream()
     .pipe(new InverseNumberStream())
     .pipe(new MultiplyByTenStream())
