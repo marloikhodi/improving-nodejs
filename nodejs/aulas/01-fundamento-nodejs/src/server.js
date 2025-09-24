@@ -21,9 +21,21 @@ import http from "node:http"; //"node:" informa que o pacote é nativo do node
 
 const users = [];
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   // request e response
   const { method, url } = req; // métodos sendo GET, POST, etc... & url sendo o caminho da requisiçao (/users por exemplo)
+  const buffers = []
+
+  for await (const chunk of req) {
+    buffers.push(chunk)
+  }
+
+  try {
+    req.body = JSON.parse(Buffer.concat(buffers).toString())
+    //JSON.parse transforma em JSON ao enviar
+  } catch {
+    res.body = null
+  }
 
   if (method === "GET" && url === "/users") {
     return res
@@ -31,15 +43,17 @@ const server = http.createServer((req, res) => {
       .end(JSON.stringify(users)); //o return deve ser em JSON principalmente
   }
   if (method === "POST" && url === "/users") {
+    const { nome, email } = req.body
+
     users.push({
       id: users.length + 1,
-      nome: "John Doe",
-      email: "johndoe@example.com",
+      nome,
+      email,
     });
 
     return res
       .writeHead(201)
-      .end();
+      .end('Usuário Criado');
   }
 
   // console.log(method, url);
