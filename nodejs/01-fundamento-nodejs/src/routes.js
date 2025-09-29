@@ -16,10 +16,10 @@ export const routes = [
     method: "POST",
     path: buildRoutePath("/users"),
     handler: (req, res) => {
-      const { nome, email } = req.body;
+      const { name, email } = req.body;
       const user = {
         id: randomUUID(),
-        nome,
+        name,
         email,
       };
 
@@ -34,6 +34,21 @@ export const routes = [
       const { id } = req.params;
 
       database.delete("users", id);
+
+      return res.writeHead(204).end();
+    },
+  },
+  {
+    method: "PUT",
+    path: buildRoutePath("/users/:id"),
+    handler: (req, res) => {
+      const { id } = req.params;
+      const { name, email } = req.body;
+
+      database.update("users", id, {
+        name,
+        email,
+      });
 
       return res.writeHead(204).end();
     },
