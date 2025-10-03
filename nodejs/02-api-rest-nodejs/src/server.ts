@@ -17,8 +17,8 @@ app.get('/hello', async () => {
 })
 app.get('/world', async () => {
 	const transaction = await knex('transactions')
-	.where('amount', 500)
-	.select('*')
+		.where('amount', 500)
+		.select('*')
 
 	return transaction
 })
