@@ -1,7 +1,7 @@
-import Knex, { type Knex as TypeKnex } from 'knex'
+import setupKnex, { type Knex } from 'knex'
 
-export const config: TypeKnex.Config = {
-	client: 'sqlite',
+export const config: Knex.Config = {
+	client: 'sqlite3',
 	connection: {
 		filename: './db/app.db',
 	},
@@ -12,4 +12,4 @@ export const config: TypeKnex.Config = {
 	},
 }
 
-export const knex = Knex(config)
+export const knex = setupKnex(config)
