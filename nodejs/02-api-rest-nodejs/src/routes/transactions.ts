@@ -4,7 +4,29 @@ import { z } from 'zod'
 import { knex } from '../database.js'
 
 export async function transactionsRoutes(app: FastifyInstance) {
-	// isso é um plugin do fastify
+	app.get('/', async () => {
+		const transactions = await knex<Transactions>('transactions').select() // não é necessário o * para puxar todos os campos
+
+		return {
+			transactions,
+		}
+	})
+
+	app.get('/:id', async (request) => {
+		const getTransactionParamsSchema = z.object({
+			id: z.uuid(),
+		})
+
+		const { id } = getTransactionParamsSchema.parse(request.params)
+
+		const transaction = await knex<Transactions>('transactions')
+			.where('id', id)
+			.first() //.first indica ao knex que somente existe um resultado, nao devolvendo um array
+
+		return {
+			transaction,
+		}
+	})
 
 	app.post('/', async (request, reply) => {
 		const createTransactionBodySchema = z.object({
@@ -17,12 +39,20 @@ export async function transactionsRoutes(app: FastifyInstance) {
 			request.body,
 		)
 
-		await knex('transactions').insert({
+		await knex<Transactions>('transactions').insert({
 			id: randomUUID(),
 			title,
-			amount: type === 'credit' ? amount : amount * -1,
+			amount: 'credit' === type ? amount : amount * -1,
 		})
 
 		reply.status(201).send()
 	})
+}
+
+interface Transactions {
+	id: string
+	title: string
+	amount: number
+	created_at: string
+	session_id?: string
 }
