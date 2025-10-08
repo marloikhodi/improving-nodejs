@@ -6,7 +6,7 @@ import { knex } from '../database.js'
 export async function transactionsRoutes(app: FastifyInstance) {
 	// isso é um plugin do fastify
 
-	app.post('/', async (request,reply) => {
+	app.post('/', async (request, reply) => {
 		const createTransactionBodySchema = z.object({
 			title: z.string(),
 			amount: z.number(),
