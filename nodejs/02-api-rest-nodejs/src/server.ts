@@ -1,8 +1,7 @@
+import cookie from '@fastify/cookie'
 import fastify from 'fastify'
 import { env } from '../env/index.js'
 import { transactionsRoutes } from './routes/transactions.js'
-import cookie from '@fastify/cookie'
-
 
 const app = fastify()
 
