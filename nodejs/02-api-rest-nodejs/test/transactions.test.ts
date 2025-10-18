@@ -12,7 +12,7 @@ describe('Transactions routes', () => {
 		await app.close() // fecha o servidor depois de tudo
 	})
 
-	it('sould be able to create a new transition', async () => {
+	it('sould be able to create a new transition', async () => { //it e test sao a mesma coisa, it fica mais semantico em ingles 
 		await request(app.server)
 			.post('/transactions')
 			.send({
