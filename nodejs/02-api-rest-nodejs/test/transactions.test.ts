@@ -1,6 +1,6 @@
+import { execSync } from 'node:child_process'
 import request from 'supertest'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
-import{execSync} from 'node:child_process'
 import { app } from '../src/app.js'
 
 describe('Transactions routes', () => {
@@ -13,7 +13,7 @@ describe('Transactions routes', () => {
 		await app.close() // fecha o servidor depois de tudo
 	})
 
-	beforeEach (()=> {
+	beforeEach(() => {
 		execSync('npm run knex -- migrate:rollback') //dando drop no banco
 		execSync('npm run knex -- migrate:latest') // subindo o banco
 	})
@@ -53,7 +53,7 @@ describe('Transactions routes', () => {
 			}),
 		])
 	})
-	
+
 	it('should be able to get a specific transaction', async () => {
 		const createTransactionResponse = await request(app.server)
 			.post('/transactions')
@@ -71,12 +71,12 @@ describe('Transactions routes', () => {
 			.expect(200)
 
 		const transactionId = listTransactionsResponse.body.transactions[0].id
-			
+
 		const getTransactionResponse = await request(app.server)
 			.get(`/transactions/${transactionId}`)
 			.set('Cookie', cookies)
 			.expect(200)
-		
+
 		expect(getTransactionResponse.body.transaction).toEqual(
 			expect.objectContaining({
 				title: 'Listed Transaction',
@@ -85,7 +85,7 @@ describe('Transactions routes', () => {
 		)
 	})
 
-		it('should be able to get the summary', async () => {
+	it('should be able to get the summary', async () => {
 		const createTransactionResponse = await request(app.server)
 			.post('/transactions')
 			.send({
@@ -110,8 +110,7 @@ describe('Transactions routes', () => {
 			.set('Cookie', cookies)
 			.expect(200)
 
-		expect(summaryResponse.body.summary).toEqual({amount: 3000,})
+		expect(summaryResponse.body.summary).toEqual({ amount: 3000 })
 	})
-
 })
 //

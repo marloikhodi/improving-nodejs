@@ -10,7 +10,8 @@
 		"check": "npx @biomejs/biome check --write .",
 		"lint": "npx @biomejs/biome lint --write .",
 		"format": "npx @biomejs/biome format --write .",
-		"knex": "tsx ./node_modules/knex/bin/cli.js"
+		"knex": "tsx ./node_modules/knex/bin/cli.js",
+		"build": "tsup src"
 	},
 	"keywords": [],
 	"author": "",
@@ -20,6 +21,7 @@
 		"@types/node": "^24.6.2",
 		"@types/supertest": "^6.0.3",
 		"supertest": "^7.1.4",
+		"tsup": "^8.5.0",
 		"tsx": "^4.20.6",
 		"typescript": "^5.9.3",
 		"vitest": "^3.2.4"
