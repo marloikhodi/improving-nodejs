@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { afterAll, beforeAll, describe, it } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { app } from '../src/app.js'
 
 describe('Transactions routes', () => {
@@ -12,7 +12,8 @@ describe('Transactions routes', () => {
 		await app.close() // fecha o servidor depois de tudo
 	})
 
-	it('sould be able to create a new transition', async () => { //it e test sao a mesma coisa, it fica mais semantico em ingles 
+	it('sould be able to create a new transition', async () => {
+		//it e test sao a mesma coisa, it fica mais semantico em ingles
 		await request(app.server)
 			.post('/transactions')
 			.send({
@@ -21,6 +22,30 @@ describe('Transactions routes', () => {
 				type: 'credit',
 			})
 			.expect(201)
+	})
+
+	it('should be able to list all transactions', async () => {
+		const createTransactionResponse = await request(app.server)
+			.post('/transactions')
+			.send({
+				title: 'Listed Transaction',
+				amount: 5000,
+				type: 'credit',
+			})
+
+		const cookies = String(createTransactionResponse.get('Set-Cookie'))
+
+		const listTransactionsResponse = await request(app.server)
+			.get('/transactions')
+			.set('Cookie', cookies)
+			.expect(200)
+
+		expect(listTransactionsResponse.body.transactions).toEqual([
+			expect.objectContaining({
+				title: 'Listed Transaction',
+				amount: 5000,
+			}),
+		])
 	})
 })
 //
