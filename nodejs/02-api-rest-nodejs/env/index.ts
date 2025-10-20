@@ -1,6 +1,12 @@
-import 'dotenv/config'
+import {config} from 'dotenv'
 // import do .env gerando uma variavel global chamada process.env
 import { z } from 'zod'
+
+if (process.env.NODE_ENV === 'test') {
+	config({path: '.env.test'})
+} else {
+	config()
+}
 
 //process.env
 //schema globla para o .env
