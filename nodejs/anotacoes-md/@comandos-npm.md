@@ -6,6 +6,7 @@ npm i -D @types/node -> faz o node entender o TS
 npm i -D tsx -> biblioteca para conversao e execução automatica
 npm i supertest -D -> instala o pacote do supertest
 npm i tsup -D
+npm install knex --save
 
 npx tsc src/server.ts -> converte e gera o arquivo .ts para .js
 npx tsx src/server.ts -> roda o .ts como se fosse um .js (converte e roda por baixo dos panos)
