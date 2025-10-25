@@ -2,7 +2,9 @@
 
 npm install --save-dev ts-node typescript
 
-$ knex migrate:make migration_name -x ts
+knex migrate:make migration_name -x ts
+knex migrate:rollback
+knex migrate:latest
 
 "knex": "tsx ./node_modules/knex/bin/cli.js"
 
