@@ -11,7 +11,7 @@
 		"lint": "npx @biomejs/biome lint --write .",
 		"format": "npx @biomejs/biome format --write .",
 		"knex": "tsx ./node_modules/knex/bin/cli.js",
-		"build": "tsup src"
+		"build": "tsup src --out-dir build"
 	},
 	"keywords": [],
 	"author": "",
