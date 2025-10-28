@@ -16,7 +16,7 @@ console.log(process.env.PORT)
 const envSchema = z.object({
 	//.object pois o process.env retorna um objeto
 	NODE_ENV: z.enum(['development', 'test', 'production']).default('production'), //enum -> uma entre
-	DATABSE_CLIENT: z.enum(['sqlite', 'pg']),
+	DATABASE_CLIENT: z.enum(['sqlite', 'pg']),
 	DATABASE_URL: z.string(), //.nullable() caso nao fosse um valor obrigatorio
 	PORT: z.coerce.number().default(3333),
 })
