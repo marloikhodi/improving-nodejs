@@ -140,3 +140,7 @@ vite.config.ts.timestamp-*
 
 # Development Database
 *.db
+
+#Build
+
+build
