@@ -11,3 +11,5 @@ knex migrate:latest
 npm run knex -- migrate:make (nome-da-pasta) -> cria uma migrate
 npm run knex -- migrate:latest -> roda a ultima migrate
 npm run knex -- migrate:rollback -> rollback na ultima migrate
+
+https://knexjs.org/guide/schema-builder.html#dropcolumns:~:text=name%20to%20another.-,increments,-%23
