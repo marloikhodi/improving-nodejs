@@ -17,3 +17,5 @@ console.log(userCalcAge({
 
 birtYear: 1998
 }))
+
+importante instalar e configurar ESlint
