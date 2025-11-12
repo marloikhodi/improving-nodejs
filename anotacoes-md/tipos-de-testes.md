@@ -9,3 +9,4 @@ E2E - ponta a ponta: simulam um usuário operando nossa aplicação; back-end: C
 E2E: não dependem de nenhuma tecnologia, não dependem de arquitetura, porem são menos performáticos
 
 test
+teste2
