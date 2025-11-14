@@ -7,3 +7,4 @@ execSync('npm run knex -- migrate:rollback')
 execSync('npm run knex -- migrate:latest')
 })
 
+test
