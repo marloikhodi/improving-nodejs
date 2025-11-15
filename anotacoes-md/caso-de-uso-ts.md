@@ -18,4 +18,4 @@ console.log(userCalcAge({
 birtYear: 1998
 }))
 
-importante instalar e configurar ESlint
+importante instalar e configurar ESlint para melhor funcionamento da IDE
