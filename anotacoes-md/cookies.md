@@ -1,3 +1,3 @@
 # Cookies
 
-Formas da gente manter contexto entre requisições
+Formas da gente manter contexto entre requisiçõess
