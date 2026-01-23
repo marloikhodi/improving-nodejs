@@ -10,4 +10,4 @@ npm install knex --save
 
 npx tsc src/server.ts -> converte e gera o arquivo .ts para .js
 npx tsx src/server.ts -> roda o .ts como se fosse um .js (converte e roda por baixo dos panos)
-asd
+asdaa
